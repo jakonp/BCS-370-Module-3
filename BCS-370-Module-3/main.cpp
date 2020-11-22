@@ -7,8 +7,43 @@
 
 #include <iostream>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+using namespace std;
+
+class CuteRobot
+{
+private:
+    int position;
+public:
+    CuteRobot()
+    {
+        position = 0;
+    }
+    CuteRobot(int p)
+    {
+        this->position = p;
+    }
+    int getPosition()
+    {
+        return position;
+    }
+    CuteRobot& move(int steps)
+    {
+        position += steps;
+        return *this;
+    }
+    void meet(CuteRobot *cr)
+    {
+        int steps = this->position - cr->position;
+        cout << endl << "Move " << steps << " steps";
+        move(steps);
+    }
+};
+
+int main() {
+    CuteRobot cr[5] = { CuteRobot(0), CuteRobot(1), CuteRobot(2), CuteRobot(3), CuteRobot(4)};
+    for(int i = 1; i < 5; i++)
+    {
+        (cr + i)->meet(cr);
+    }
     return 0;
 }
